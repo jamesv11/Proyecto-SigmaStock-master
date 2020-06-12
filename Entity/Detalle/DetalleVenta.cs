@@ -17,15 +17,15 @@ namespace Entity
             Cantidad = cantidad;
             ValorUnitario = producto.PrecioUnitarioProducto;
             IVADetalle = ((producto.IVA * ValorUnitario)/100)*cantidad;
-            CalcularValorNeto(producto.PrecioUnitarioProducto);
+            CalcularValorNeto();
             
         }
 
 
 
-        public override void CalcularValorNeto(decimal precioUnitario)
+        public override void CalcularValorNeto()
         {
-            ValorNeto = Cantidad * precioUnitario;
+            ValorNeto = Cantidad * ValorUnitario;
         }
 
        

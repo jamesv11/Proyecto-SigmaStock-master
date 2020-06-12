@@ -29,11 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultarFacturaFrm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FAc = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.DetallesDgv = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaDeBusquedaDTP = new System.Windows.Forms.DateTimePicker();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,16 +52,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TipoBusquedaCbmx = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.DetallesDgv = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.NumeroFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioNeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FAc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FacturasDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetallesDgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FacturasDgv)).BeginInit();
             this.SuspendLayout();
             // 
             // FAc
@@ -88,6 +88,61 @@
             this.FAc.Size = new System.Drawing.Size(867, 539);
             this.FAc.TabIndex = 2;
             this.FAc.Paint += new System.Windows.Forms.PaintEventHandler(this.bunifuGradientPanel1_Paint);
+            // 
+            // DetallesDgv
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DetallesDgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DetallesDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DetallesDgv.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.DetallesDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DetallesDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DetallesDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DetallesDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DetallesDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CodigoProducto,
+            this.Cantidad,
+            this.PrecioUnitario,
+            this.PrecioNeto});
+            this.DetallesDgv.DoubleBuffered = true;
+            this.DetallesDgv.EnableHeadersVisualStyles = false;
+            this.DetallesDgv.HeaderBgColor = System.Drawing.Color.Empty;
+            this.DetallesDgv.HeaderForeColor = System.Drawing.Color.Black;
+            this.DetallesDgv.Location = new System.Drawing.Point(395, 93);
+            this.DetallesDgv.Name = "DetallesDgv";
+            this.DetallesDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.DetallesDgv.Size = new System.Drawing.Size(460, 410);
+            this.DetallesDgv.TabIndex = 16;
+            // 
+            // CodigoProducto
+            // 
+            this.CodigoProducto.HeaderText = "Codigo Producto";
+            this.CodigoProducto.Name = "CodigoProducto";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // PrecioUnitario
+            // 
+            this.PrecioUnitario.HeaderText = "Precio Unitario";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.Width = 110;
+            // 
+            // PrecioNeto
+            // 
+            this.PrecioNeto.HeaderText = "Precio Neto";
+            this.PrecioNeto.Name = "PrecioNeto";
+            this.PrecioNeto.Width = 120;
             // 
             // FechaDeBusquedaDTP
             // 
@@ -188,7 +243,6 @@
             this.FacturasDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.FacturasDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Empty;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -208,6 +262,7 @@
             this.FacturasDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.FacturasDgv.Size = new System.Drawing.Size(377, 410);
             this.FacturasDgv.TabIndex = 6;
+            this.FacturasDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FacturasDgv_CellClick);
             this.FacturasDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FacturasDgv_CellContentClick);
             // 
             // BusquedaFacturaBtn
@@ -279,73 +334,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tipo de busqueda:";
             // 
-            // DetallesDgv
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DetallesDgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DetallesDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DetallesDgv.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.DetallesDgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DetallesDgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DetallesDgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DetallesDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DetallesDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CodigoProducto,
-            this.Cantidad,
-            this.PrecioUnitario,
-            this.PrecioNeto});
-            this.DetallesDgv.DoubleBuffered = true;
-            this.DetallesDgv.EnableHeadersVisualStyles = false;
-            this.DetallesDgv.HeaderBgColor = System.Drawing.Color.Empty;
-            this.DetallesDgv.HeaderForeColor = System.Drawing.Color.Black;
-            this.DetallesDgv.Location = new System.Drawing.Point(395, 93);
-            this.DetallesDgv.Name = "DetallesDgv";
-            this.DetallesDgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.DetallesDgv.Size = new System.Drawing.Size(460, 410);
-            this.DetallesDgv.TabIndex = 16;
-            // 
             // NumeroFactura
             // 
             this.NumeroFactura.HeaderText = "Numero Factura";
             this.NumeroFactura.Name = "NumeroFactura";
+            this.NumeroFactura.ReadOnly = true;
             this.NumeroFactura.Width = 170;
             // 
             // FechaFactura
             // 
             this.FechaFactura.HeaderText = "Fecha Factura";
             this.FechaFactura.Name = "FechaFactura";
+            this.FechaFactura.ReadOnly = true;
             this.FechaFactura.Width = 170;
-            // 
-            // CodigoProducto
-            // 
-            this.CodigoProducto.HeaderText = "Codigo Producto";
-            this.CodigoProducto.Name = "CodigoProducto";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "Precio Unitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.Width = 110;
-            // 
-            // PrecioNeto
-            // 
-            this.PrecioNeto.HeaderText = "Precio Neto";
-            this.PrecioNeto.Name = "PrecioNeto";
-            this.PrecioNeto.Width = 120;
             // 
             // ConsultarFacturaFrm
             // 
@@ -358,8 +359,8 @@
             this.Text = "Form1";
             this.FAc.ResumeLayout(false);
             this.FAc.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FacturasDgv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetallesDgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FacturasDgv)).EndInit();
             this.ResumeLayout(false);
 
         }

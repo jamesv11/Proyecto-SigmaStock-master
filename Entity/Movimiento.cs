@@ -10,7 +10,7 @@ namespace Entity
     {
         public int IdMovimiento { get; set; }
         public string TipoMovimiento { get; set; }
-        public int IdDetalle { get; set; }
+        public int IdProducto { get; set; }
         public DateTime FechaMovimiento { get; set; }
         public int Cantidad { get; set; }
         public int IdFactura { get; set; }

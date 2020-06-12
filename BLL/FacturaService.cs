@@ -12,6 +12,7 @@ namespace BLL
     {
         private readonly FacturaVentaRepositorio facturaVentaRepositorio;
         private readonly ConnectionManager conexion;
+        
 
         public FacturaService(string connectionString)
         {
@@ -85,6 +86,29 @@ namespace BLL
             }
             finally { conexion.Close(); }
         }
+        public List<Detalle> ListaSinUnProducto(List<Detalle> detalles, int IdProducto)
+        {
+            List<Detalle> NuevaLista = new List<Detalle>();
+            foreach (var item in detalles)
+            {
+                if (item.Id_Producto != IdProducto) NuevaLista.Add(item);
+            }
+            return NuevaLista;
+        }
+        public List<Detalle> ModificarProductoDeLalista(List<Detalle> detalles, Producto producto, int CantidadNueva, int idFactura)
+        {
+            DetalleVenta nuevoDetalle = new DetalleVenta(producto, CantidadNueva,  idFactura);
+            List<Detalle> NuevaLista = new List<Detalle>();
+            foreach (var item in detalles)
+            {
+                if (item.Id_Producto != producto.IdProducto) NuevaLista.Add(item);
+                else NuevaLista.Add(nuevoDetalle);
+            }
+            return NuevaLista;
+        }
+
+
+
     }
     public class RetornarIdFactura
     {

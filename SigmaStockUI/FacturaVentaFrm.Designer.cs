@@ -50,11 +50,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.ValorUnitarioTxt = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.CantTxt = new System.Windows.Forms.TextBox();
+            this.cantidadTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.DescripcionTxt = new System.Windows.Forms.TextBox();
             this.CodigoTxt = new System.Windows.Forms.Label();
-            this.IdProductoTxt = new System.Windows.Forms.TextBox();
+            this.CodigoProductoTxt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.BuscarProductoBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -69,16 +69,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FechaDeExpedicionDTP = new System.Windows.Forms.DateTimePicker();
             this.DetalleDtG = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.ClienteTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BuscarClienteBtn = new System.Windows.Forms.Button();
+            this.IdentificacionTxt = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.IdProductoDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripcionDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValorUnitarioDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IVADgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValorTotalDgv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClienteTxt = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.BuscarClienteBtn = new System.Windows.Forms.Button();
-            this.IdentificacionTxt = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.bunifuGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DetalleDtG)).BeginInit();
             this.SuspendLayout();
@@ -106,11 +106,11 @@
             this.bunifuGradientPanel1.Controls.Add(this.label10);
             this.bunifuGradientPanel1.Controls.Add(this.ValorUnitarioTxt);
             this.bunifuGradientPanel1.Controls.Add(this.label9);
-            this.bunifuGradientPanel1.Controls.Add(this.CantTxt);
+            this.bunifuGradientPanel1.Controls.Add(this.cantidadTxt);
             this.bunifuGradientPanel1.Controls.Add(this.label8);
             this.bunifuGradientPanel1.Controls.Add(this.DescripcionTxt);
             this.bunifuGradientPanel1.Controls.Add(this.CodigoTxt);
-            this.bunifuGradientPanel1.Controls.Add(this.IdProductoTxt);
+            this.bunifuGradientPanel1.Controls.Add(this.CodigoProductoTxt);
             this.bunifuGradientPanel1.Controls.Add(this.label6);
             this.bunifuGradientPanel1.Controls.Add(this.BuscarProductoBtn);
             this.bunifuGradientPanel1.Controls.Add(this.button1);
@@ -132,7 +132,7 @@
             this.bunifuGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuGradientPanel1.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.bunifuGradientPanel1.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.RoyalBlue;
+            this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(68)))), ((int)(((byte)(128)))));
             this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.SlateBlue;
             this.bunifuGradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
@@ -150,7 +150,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(54, 497);
+            this.label7.Location = new System.Drawing.Point(53, 500);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 16);
             this.label7.TabIndex = 47;
@@ -218,9 +218,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalTxt.Enabled = false;
-            this.TotalTxt.Location = new System.Drawing.Point(102, 496);
+            this.TotalTxt.Location = new System.Drawing.Point(101, 499);
             this.TotalTxt.Name = "TotalTxt";
-            this.TotalTxt.Size = new System.Drawing.Size(106, 20);
+            this.TotalTxt.Size = new System.Drawing.Size(107, 20);
             this.TotalTxt.TabIndex = 42;
             // 
             // IvaTxt
@@ -289,6 +289,7 @@
             this.ModificarBtn.Size = new System.Drawing.Size(51, 28);
             this.ModificarBtn.TabIndex = 34;
             this.ModificarBtn.UseVisualStyleBackColor = false;
+            this.ModificarBtn.Click += new System.EventHandler(this.ModificarBtn_Click);
             // 
             // EliminarBtn
             // 
@@ -303,6 +304,7 @@
             this.EliminarBtn.Size = new System.Drawing.Size(51, 28);
             this.EliminarBtn.TabIndex = 33;
             this.EliminarBtn.UseVisualStyleBackColor = false;
+            this.EliminarBtn.Click += new System.EventHandler(this.EliminarBtn_Click);
             // 
             // ExisteciasProdTxt
             // 
@@ -380,15 +382,15 @@
             this.label9.Text = "V/r Uni:";
             this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // CantTxt
+            // cantidadTxt
             // 
-            this.CantTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cantidadTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CantTxt.Location = new System.Drawing.Point(408, 179);
-            this.CantTxt.Name = "CantTxt";
-            this.CantTxt.Size = new System.Drawing.Size(48, 20);
-            this.CantTxt.TabIndex = 24;
+            this.cantidadTxt.Location = new System.Drawing.Point(408, 179);
+            this.cantidadTxt.Name = "cantidadTxt";
+            this.cantidadTxt.Size = new System.Drawing.Size(48, 20);
+            this.cantidadTxt.TabIndex = 24;
             // 
             // label8
             // 
@@ -431,16 +433,16 @@
             this.CodigoTxt.TabIndex = 21;
             this.CodigoTxt.Text = "Descripcion:";
             // 
-            // IdProductoTxt
+            // CodigoProductoTxt
             // 
-            this.IdProductoTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.CodigoProductoTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.IdProductoTxt.Enabled = false;
-            this.IdProductoTxt.Location = new System.Drawing.Point(97, 182);
-            this.IdProductoTxt.Name = "IdProductoTxt";
-            this.IdProductoTxt.Size = new System.Drawing.Size(74, 20);
-            this.IdProductoTxt.TabIndex = 20;
+            this.CodigoProductoTxt.Enabled = false;
+            this.CodigoProductoTxt.Location = new System.Drawing.Point(97, 182);
+            this.CodigoProductoTxt.Name = "CodigoProductoTxt";
+            this.CodigoProductoTxt.Size = new System.Drawing.Size(74, 20);
+            this.CodigoProductoTxt.TabIndex = 20;
             // 
             // label6
             // 
@@ -662,42 +664,6 @@
             this.DetalleDtG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalleDtG_CellClick);
             this.DetalleDtG.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalleDtG_CellContentClick);
             // 
-            // IdProductoDgv
-            // 
-            this.IdProductoDgv.HeaderText = "Codigo";
-            this.IdProductoDgv.Name = "IdProductoDgv";
-            this.IdProductoDgv.Width = 120;
-            // 
-            // DescripcionDgv
-            // 
-            this.DescripcionDgv.HeaderText = "Descripcion";
-            this.DescripcionDgv.Name = "DescripcionDgv";
-            this.DescripcionDgv.Width = 180;
-            // 
-            // CantidadDgv
-            // 
-            this.CantidadDgv.HeaderText = "Cantidad";
-            this.CantidadDgv.Name = "CantidadDgv";
-            this.CantidadDgv.Width = 120;
-            // 
-            // ValorUnitarioDgv
-            // 
-            this.ValorUnitarioDgv.HeaderText = "ValorUnitario";
-            this.ValorUnitarioDgv.Name = "ValorUnitarioDgv";
-            this.ValorUnitarioDgv.Width = 120;
-            // 
-            // IVADgv
-            // 
-            this.IVADgv.HeaderText = "IVA";
-            this.IVADgv.Name = "IVADgv";
-            this.IVADgv.Width = 120;
-            // 
-            // ValorTotalDgv
-            // 
-            this.ValorTotalDgv.HeaderText = "ValorTotal";
-            this.ValorTotalDgv.Name = "ValorTotalDgv";
-            this.ValorTotalDgv.Width = 140;
-            // 
             // ClienteTxt
             // 
             this.ClienteTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -764,6 +730,42 @@
             this.IdentificacionTxt.Text = "CC/NIT";
             this.IdentificacionTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
+            // IdProductoDgv
+            // 
+            this.IdProductoDgv.HeaderText = "Codigo";
+            this.IdProductoDgv.Name = "IdProductoDgv";
+            this.IdProductoDgv.Width = 120;
+            // 
+            // DescripcionDgv
+            // 
+            this.DescripcionDgv.HeaderText = "Descripcion";
+            this.DescripcionDgv.Name = "DescripcionDgv";
+            this.DescripcionDgv.Width = 180;
+            // 
+            // CantidadDgv
+            // 
+            this.CantidadDgv.HeaderText = "Cantidad";
+            this.CantidadDgv.Name = "CantidadDgv";
+            this.CantidadDgv.Width = 120;
+            // 
+            // ValorUnitarioDgv
+            // 
+            this.ValorUnitarioDgv.HeaderText = "ValorUnitario";
+            this.ValorUnitarioDgv.Name = "ValorUnitarioDgv";
+            this.ValorUnitarioDgv.Width = 120;
+            // 
+            // IVADgv
+            // 
+            this.IVADgv.HeaderText = "IVA";
+            this.IVADgv.Name = "IVADgv";
+            this.IVADgv.Width = 120;
+            // 
+            // ValorTotalDgv
+            // 
+            this.ValorTotalDgv.HeaderText = "Valor Neto";
+            this.ValorTotalDgv.Name = "ValorTotalDgv";
+            this.ValorTotalDgv.Width = 140;
+            // 
             // FacturaVentaFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -802,11 +804,11 @@
         private Bunifu.Framework.UI.BunifuMaterialTextbox IdentificacionTxt;
         private System.Windows.Forms.TextBox ValorUnitarioTxt;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox CantTxt;
+        private System.Windows.Forms.TextBox cantidadTxt;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox DescripcionTxt;
         private System.Windows.Forms.Label CodigoTxt;
-        private System.Windows.Forms.TextBox IdProductoTxt;
+        private System.Windows.Forms.TextBox CodigoProductoTxt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BuscarProductoBtn;
         private System.Windows.Forms.TextBox IvaProductoText;
@@ -824,12 +826,12 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button RegistrarCLiente;
         private System.Windows.Forms.TextBox TipoBusquedaTxt;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProductoDgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionDgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadDgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorUnitarioDgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn IVADgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorTotalDgv;
-        private System.Windows.Forms.Label label7;
     }
 }

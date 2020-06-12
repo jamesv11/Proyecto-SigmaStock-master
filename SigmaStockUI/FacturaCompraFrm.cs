@@ -103,6 +103,7 @@ namespace SigmaStockUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DetalleDgv.Rows.Clear();
             if (string.IsNullOrEmpty(CodigoProductoTxt.Text) == false)
             {
                 if (string.IsNullOrEmpty(CantTxt.Text)==false && EsNumeroEntero(CantTxt.Text) == true)
@@ -152,6 +153,7 @@ namespace SigmaStockUI
 
         private void EliminarBtn_Click(object sender, EventArgs e)
         {
+            DetalleDgv.Rows.Clear();
             if (string.IsNullOrEmpty(CodigoProductoTxt.Text) == false)
             {
                 facturaCompra.Detalles = compraService.ListaSinUnProducto(facturaCompra.Detalles, int.Parse(CodigoProductoTxt.Text));
@@ -165,6 +167,7 @@ namespace SigmaStockUI
         }
         private void ModificarBtn_Click(object sender, EventArgs e)
         {
+            DetalleDgv.Rows.Clear();
             if (string.IsNullOrEmpty(CodigoProductoTxt.Text) == false)
             {
                 if (string.IsNullOrEmpty(CantTxt.Text) == false && EsNumeroEntero(CantTxt.Text) == true)
@@ -226,12 +229,7 @@ namespace SigmaStockUI
 
             if ((facturaCompra.Detalles.Where(p => p.Id_Producto == int.Parse(CodigoProductoTxt.Text)).FirstOrDefault()) == null)
             {
-                if (compraService.Disponible(int.Parse(CantTxt.Text), int.Parse(CodigoProductoTxt.Text)))
-                {
-                    facturaCompra.AgregarDetalle(respuesta.Producto, int.Parse(CantTxt.Text), decimal.Parse(ValorUnitarioTxt.Text),facturaCompra.Id_Factura);
-                }
-                else MessageBox.Show("La cantidad que ingreso no esta disponible", "", MessageBoxButtons.OK);
-
+                facturaCompra.AgregarDetalle(respuesta.Producto, int.Parse(CantTxt.Text), decimal.Parse(ValorUnitarioTxt.Text), facturaCompra.Id_Factura);
             }
             else MessageBox.Show("Este producto a esta incluido","",MessageBoxButtons.OK);
         }
@@ -242,12 +240,7 @@ namespace SigmaStockUI
 
             if ((facturaCompra.Detalles.Where(p => p.Id_Producto == int.Parse(CodigoProductoTxt.Text)).FirstOrDefault()) != null)
             {
-                if (compraService.Disponible(int.Parse(CantTxt.Text), int.Parse(CodigoProductoTxt.Text)))
-                {
-                    facturaCompra.Detalles = compraService.ModificarProductoDeLalista(facturaCompra.Detalles, respuesta.Producto, int.Parse(CantTxt.Text), decimal.Parse(ValorUnitarioTxt.Text),facturaCompra.Id_Factura);
-                }
-                else MessageBox.Show("La cantidad que ingreso no esta disponible", "", MessageBoxButtons.OK);
-               
+                facturaCompra.Detalles = compraService.ModificarProductoDeLalista(facturaCompra.Detalles, respuesta.Producto, int.Parse(CantTxt.Text), decimal.Parse(ValorUnitarioTxt.Text), facturaCompra.Id_Factura);
             }
             else MessageBox.Show("Este producto no a esta incluido", "", MessageBoxButtons.OK);
         }

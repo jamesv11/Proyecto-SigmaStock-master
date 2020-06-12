@@ -22,6 +22,7 @@ namespace SigmaStockUI
             VerComponente();
             compraService = new FacturaCompraService(ExtraerCadena.connectionString);
             FacturaService = new FacturaService(ExtraerCadena.connectionString);
+            
         }
 
         private void TipoBusquedaCbmx_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,5 +105,46 @@ namespace SigmaStockUI
         {
 
         }
+
+        private void FacturasDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int n = FacturasDgv.RowCount;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (FacturasDgv.Rows[i].Cells[0].Selected==true)
+                {
+                    RespuestaConsultaFactura respuesta = FacturaService.Consultar();
+                    RespuestaDeBusqueda respuestaCompra = compraService.BuscarFactura(int.Parse(FacturasDgv.CurrentCell.Value.ToString()));
+                    Factura facturaVenta = respuesta.Facturas.Where(p => p.Id_Factura == int.Parse(FacturasDgv.CurrentCell.Value.ToString())).FirstOrDefault();
+                    if (respuestaCompra.FacturaCompra != null)
+                    {
+                        LLenarDatagribDetalle(respuestaCompra.FacturaCompra.Detalles);
+                    }
+                    else
+                    {
+                        LLenarDatagribDetalle(facturaVenta.Detalles);
+                    }
+                }
+            }
+            
+
+            
+
+        }
+
+        private void LLenarDatagribDetalle(List<Detalle> detalles)
+        {
+            DetallesDgv.Rows.Clear();
+            foreach (var item in detalles)
+            {
+                int n = DetallesDgv.Rows.Add();
+                DetallesDgv.Rows[n].Cells[0].Value = item.Id_Producto;
+                DetallesDgv.Rows[n].Cells[1].Value = item.Cantidad;
+                DetallesDgv.Rows[n].Cells[2].Value = item.ValorUnitario;
+                DetallesDgv.Rows[n].Cells[3].Value = item.ValorNeto;
+            }
+        } 
+
     }
 }

@@ -58,7 +58,25 @@ namespace BLL
 
         }
 
+        public RespuestaDeBusqueda BuscarFactura(int Id_factura)
+        {
+            RespuestaDeBusqueda respuesta = new RespuestaDeBusqueda();
+            try
+            {
+                conexion.Open();
+                respuesta.FacturaCompra = repositorioFacturaCompra.BuscarFactura(Id_factura);
+                conexion.Close();
+                return respuesta;
 
+            }
+            catch (Exception e)
+            {
+                conexion.Close();
+                respuesta.error = $"{e}";
+                return respuesta;
+            }
+            finally { conexion.Close(); }
+        }
 
 
         public RespuestaNumeroFactura NumeroFactura()
@@ -91,9 +109,9 @@ namespace BLL
             }
             return NuevaLista;
         }
-        public List<Detalle> ModificarProductoDeLalista(List<Detalle> detalles, Producto producto,int CantidadNueva,decimal nuevoValorUnitario,int idFactura)
+        public List<Detalle> ModificarProductoDeLalista(List<Detalle> detalles, Producto producto,int CantidadNueva,decimal nuevoValorUnitario,int idFactura,decimal valorCompra)
         {
-            DetalleCompra nuevoDetalle = new DetalleCompra (producto, CantidadNueva, nuevoValorUnitario,idFactura);
+            DetalleCompra nuevoDetalle = new DetalleCompra (producto, CantidadNueva, nuevoValorUnitario,idFactura,valorCompra);
             List<Detalle> NuevaLista = new List<Detalle>();
             foreach (var item in detalles)
             {
@@ -120,4 +138,11 @@ namespace BLL
         public string error;
         public IList<FacturaCompra> Facturas;
     }
+    public class RespuestaDeBusqueda
+    {
+        public string error;
+        public FacturaCompra FacturaCompra;
+    }
+
+
 }

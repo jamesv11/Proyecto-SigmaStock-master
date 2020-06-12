@@ -70,7 +70,7 @@ namespace SigmaStockUI
                 MovimientoTablaDgv.Rows[n].Cells[1].Value = item.FechaMovimiento;
                 MovimientoTablaDgv.Rows[n].Cells[2].Value = item.Cantidad;
                 MovimientoTablaDgv.Rows[n].Cells[3].Value = item.TipoMovimiento;
-                MovimientoTablaDgv.Rows[n].Cells[4].Value = item.IdDetalle;
+                MovimientoTablaDgv.Rows[n].Cells[4].Value = item.IdProducto;
                 MovimientoTablaDgv.Rows[n].Cells[5].Value = item.IdFactura;
 
             }

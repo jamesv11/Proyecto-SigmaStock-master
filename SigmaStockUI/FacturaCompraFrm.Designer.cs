@@ -74,6 +74,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DetalleDgv = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.PrecioCompraTxt = new System.Windows.Forms.TextBox();
+            this.PrecioCompra = new System.Windows.Forms.Label();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +90,8 @@
             // 
             this.bunifuGradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuGradientPanel1.BackgroundImage")));
             this.bunifuGradientPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuGradientPanel1.Controls.Add(this.PrecioCompra);
+            this.bunifuGradientPanel1.Controls.Add(this.PrecioCompraTxt);
             this.bunifuGradientPanel1.Controls.Add(this.ProveedorTxt);
             this.bunifuGradientPanel1.Controls.Add(this.label15);
             this.bunifuGradientPanel1.Controls.Add(this.RegistrarCLiente);
@@ -329,7 +333,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(717, 188);
+            this.label12.Location = new System.Drawing.Point(724, 186);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(66, 15);
             this.label12.TabIndex = 51;
@@ -341,7 +345,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IvaText.Enabled = false;
-            this.IvaText.Location = new System.Drawing.Point(658, 185);
+            this.IvaText.Location = new System.Drawing.Point(674, 185);
             this.IvaText.Name = "IvaText";
             this.IvaText.Size = new System.Drawing.Size(44, 20);
             this.IvaText.TabIndex = 48;
@@ -355,7 +359,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(618, 188);
+            this.label10.Location = new System.Drawing.Point(641, 188);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(27, 15);
             this.label10.TabIndex = 47;
@@ -367,7 +371,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ValorUnitarioTxt.Enabled = false;
-            this.ValorUnitarioTxt.Location = new System.Drawing.Point(522, 185);
+            this.ValorUnitarioTxt.Location = new System.Drawing.Point(571, 185);
             this.ValorUnitarioTxt.Name = "ValorUnitarioTxt";
             this.ValorUnitarioTxt.Size = new System.Drawing.Size(73, 20);
             this.ValorUnitarioTxt.TabIndex = 46;
@@ -381,7 +385,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(463, 188);
+            this.label9.Location = new System.Drawing.Point(519, 187);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(46, 15);
             this.label9.TabIndex = 45;
@@ -393,7 +397,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CantTxt.Enabled = false;
-            this.CantTxt.Location = new System.Drawing.Point(403, 185);
+            this.CantTxt.Location = new System.Drawing.Point(344, 186);
             this.CantTxt.Name = "CantTxt";
             this.CantTxt.Size = new System.Drawing.Size(47, 20);
             this.CantTxt.TabIndex = 44;
@@ -406,7 +410,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.ForeColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(358, 189);
+            this.label8.Location = new System.Drawing.Point(318, 192);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 13);
             this.label8.TabIndex = 43;
@@ -418,7 +422,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NombreTxt.Enabled = false;
-            this.NombreTxt.Location = new System.Drawing.Point(216, 185);
+            this.NombreTxt.Location = new System.Drawing.Point(184, 187);
             this.NombreTxt.Name = "NombreTxt";
             this.NombreTxt.Size = new System.Drawing.Size(130, 20);
             this.NombreTxt.TabIndex = 42;
@@ -432,7 +436,7 @@
             this.CodigoTxt.BackColor = System.Drawing.Color.Transparent;
             this.CodigoTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CodigoTxt.ForeColor = System.Drawing.Color.White;
-            this.CodigoTxt.Location = new System.Drawing.Point(154, 188);
+            this.CodigoTxt.Location = new System.Drawing.Point(128, 188);
             this.CodigoTxt.Name = "CodigoTxt";
             this.CodigoTxt.Size = new System.Drawing.Size(55, 15);
             this.CodigoTxt.TabIndex = 41;
@@ -445,7 +449,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CodigoProductoTxt.BackColor = System.Drawing.SystemColors.Window;
             this.CodigoProductoTxt.Enabled = false;
-            this.CodigoProductoTxt.Location = new System.Drawing.Point(78, 185);
+            this.CodigoProductoTxt.Location = new System.Drawing.Point(62, 186);
             this.CodigoProductoTxt.Name = "CodigoProductoTxt";
             this.CodigoProductoTxt.ReadOnly = true;
             this.CodigoProductoTxt.Size = new System.Drawing.Size(64, 20);
@@ -747,6 +751,27 @@
             this.DetalleDgv.TabIndex = 6;
             this.DetalleDgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalleDgv_CellContentClick);
             // 
+            // PrecioCompraTxt
+            // 
+            this.PrecioCompraTxt.Location = new System.Drawing.Point(461, 185);
+            this.PrecioCompraTxt.Name = "PrecioCompraTxt";
+            this.PrecioCompraTxt.Size = new System.Drawing.Size(60, 20);
+            this.PrecioCompraTxt.TabIndex = 65;
+            // 
+            // PrecioCompra
+            // 
+            this.PrecioCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PrecioCompra.AutoSize = true;
+            this.PrecioCompra.BackColor = System.Drawing.Color.Transparent;
+            this.PrecioCompra.ForeColor = System.Drawing.Color.Transparent;
+            this.PrecioCompra.Location = new System.Drawing.Point(397, 190);
+            this.PrecioCompra.Name = "PrecioCompra";
+            this.PrecioCompra.Size = new System.Drawing.Size(59, 13);
+            this.PrecioCompra.TabIndex = 66;
+            this.PrecioCompra.Text = "PreCompra";
+            // 
             // Codigo
             // 
             this.Codigo.HeaderText = "Codigo";
@@ -783,7 +808,7 @@
             // 
             // ValorTotal
             // 
-            this.ValorTotal.HeaderText = "Valor Total";
+            this.ValorTotal.HeaderText = "Valor Neto";
             this.ValorTotal.Name = "ValorTotal";
             this.ValorTotal.ReadOnly = true;
             this.ValorTotal.Width = 150;
@@ -845,16 +870,18 @@
         private System.Windows.Forms.Button RegistrarProducto;
         private System.Windows.Forms.Label label11;
         private Bunifu.Framework.UI.BunifuCustomDataGrid DetalleDgv;
+        private System.Windows.Forms.Button RegistrarCLiente;
+        private System.Windows.Forms.Button BuscarClienteBtn;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox IdentificacionTxt;
+        private System.Windows.Forms.TextBox ProveedorTxt;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label PrecioCompra;
+        private System.Windows.Forms.TextBox PrecioCompraTxt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn IVA;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorTotal;
-        private System.Windows.Forms.Button RegistrarCLiente;
-        private System.Windows.Forms.Button BuscarClienteBtn;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox IdentificacionTxt;
-        private System.Windows.Forms.TextBox ProveedorTxt;
-        private System.Windows.Forms.Label label15;
     }
 }

@@ -9,15 +9,16 @@ namespace Entity
     public class DetalleCompra : Detalle
     {
 
-        public DetalleCompra(Producto producto, int nuevaCantidad, decimal nuevoValorUnitario, int idFactura)
+        public DetalleCompra(Producto producto, int nuevaCantidad, decimal nuevoValorUnitario, int idFactura, decimal precioCompra)
         {
             Id_Factura = idFactura;
             Id_Producto = producto.IdProducto;
             Descripcion = producto.NombreProducto;
             Cantidad = nuevaCantidad;
+            PrecioCompra = precioCompra;
             ValorUnitario = nuevoValorUnitario;
             IVADetalle = ((producto.IVA * ValorUnitario) / 100) * nuevaCantidad;
-            CalcularValorNeto(nuevoValorUnitario);
+            CalcularValorNeto();
 
         } 
         public DetalleCompra()
@@ -27,9 +28,9 @@ namespace Entity
 
 
 
-        public override void CalcularValorNeto(decimal nuevoValorUnitario)
+        public override void CalcularValorNeto()
         {
-            ValorNeto = Cantidad * nuevoValorUnitario;
+            ValorNeto = Cantidad * PrecioCompra;
         }
 
      

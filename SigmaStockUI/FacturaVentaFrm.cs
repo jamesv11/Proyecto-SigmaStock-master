@@ -107,7 +107,7 @@ namespace SigmaStockUI
                 respuestaBusqueda = productoService.ObtenerProductosCodigo(int.Parse(TipoBusquedaTxt.Text));
 
 
-                IdProductoTxt.Text = respuestaBusqueda.Producto.IdProducto.ToString();
+                CodigoProductoTxt.Text = respuestaBusqueda.Producto.IdProducto.ToString();
                 DescripcionTxt.Text = respuestaBusqueda.Producto.NombreProducto;
                 ExisteciasProdTxt.Text = respuestaBusqueda.Producto.Existencias.ToString();
                 ValorUnitarioTxt.Text = respuestaBusqueda.Producto.PrecioUnitarioProducto.ToString();
@@ -126,35 +126,55 @@ namespace SigmaStockUI
         private void button1_Click(object sender, EventArgs e)
         {
             AgregarDetalleTabla();
+            LimpiarCamposDetalle();
         }
 
         private void AgregarDetalleTabla()
         {
-            
-            RespuestaBusquedaProducto respuestaBusqueda = new RespuestaBusquedaProducto();
-            respuestaBusqueda = productoService.ObtenerProductosCodigo(int.Parse(TipoBusquedaTxt.Text));
-            producto = new Producto
+
+            if (string.IsNullOrEmpty(IdentificacionTxt.Text) == false && IdentificacionTxt.Text!= "CC/NIT")
             {
-                IdProducto = respuestaBusqueda.Producto.IdProducto,
-                NombreProducto = respuestaBusqueda.Producto.NombreProducto,
-                Existencias = respuestaBusqueda.Producto.Existencias,
-                IVA = respuestaBusqueda.Producto.IVA,
-                PrecioUnitarioProducto = respuestaBusqueda.Producto.PrecioUnitarioProducto
-            };
-            if(producto.Existencias > int.Parse(CantTxt.Text))
-            {
-                factura.AgregarDetalle(producto, int.Parse(CantTxt.Text),factura.Id_Factura);
-                PintarTablaDetalles(factura.Detalles);
-                factura.CalcularSubtotal();
-                factura.CalcularIva();
-                factura.CalcularValorTotal();
-                rellenarTxtTotales();
+                if (string.IsNullOrEmpty(CodigoProductoTxt.Text) == false)
+                {
+                    RespuestaBusquedaProducto respuestaBusqueda = new RespuestaBusquedaProducto();
+                    respuestaBusqueda = productoService.ObtenerProductosCodigo(int.Parse(TipoBusquedaTxt.Text));
+                    producto = new Producto
+                    {
+                        IdProducto = respuestaBusqueda.Producto.IdProducto,
+                        NombreProducto = respuestaBusqueda.Producto.NombreProducto,
+                        Existencias = respuestaBusqueda.Producto.Existencias,
+                        IVA = respuestaBusqueda.Producto.IVA,
+                        PrecioUnitarioProducto = respuestaBusqueda.Producto.PrecioUnitarioProducto
+                    };
+                    if (string.IsNullOrEmpty(cantidadTxt.Text) == false)
+                    {
+                        if ((factura.Detalles.Where(p => p.Id_Producto == producto.IdProducto).FirstOrDefault()) == null)
+                        {
+                            if (producto.Existencias >= int.Parse(cantidadTxt.Text))
+                            {
+                                factura.AgregarDetalle(producto, int.Parse(cantidadTxt.Text), factura.Id_Factura);
+                                PintarTablaDetalles(factura.Detalles);
+                                rellenarTxtTotales();
+                            }
+                            else
+                            {
+                                MessageBox.Show("La cantidad solicitada es mayor a la cantidad del producto", "Verificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else { MessageBox.Show("El producto ta esta registrado", "Verificacion", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Campo cantidad no puede estar vacio", "Verificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else MessageBox.Show("Porfavor verifique la existencia del producto");
             }
-            else
-            {
-                MessageBox.Show("La cantidad solicitada es mayor a la cantidad del producto", "Verificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            
+            else MessageBox.Show("Ingrese un cliente por favor");
+
+
+
+
         }
 
         private void PintarTablaDetalles(IList<Detalle> detalles)
@@ -164,7 +184,7 @@ namespace SigmaStockUI
             {
                 DetalleDtG.Rows[n].Cells[0].Value = item.Id_Producto;
                 DetalleDtG.Rows[n].Cells[1].Value = item.Descripcion;
-                DetalleDtG.Rows[n].Cells[2].Value = CantTxt.Text;
+                DetalleDtG.Rows[n].Cells[2].Value = cantidadTxt.Text;
                 DetalleDtG.Rows[n].Cells[3].Value = item.ValorUnitario;
                 DetalleDtG.Rows[n].Cells[4].Value = item.IVADetalle;
                 DetalleDtG.Rows[n].Cells[5].Value = item.ValorNeto;
@@ -175,12 +195,33 @@ namespace SigmaStockUI
         }
         private void rellenarTxtTotales()
         {
+            factura.CalcularSubtotal();
+            factura.CalcularIva();
+            factura.CalcularValorTotal();
             IvaTxt.Text = factura.IVA.ToString();
             SubTotalTxt.Text = factura.Subtotal.ToString();
             TotalTxt.Text = factura.ValorTotal.ToString();
            
         }
-        
+        private void LimpiarCamposDetalle()
+        {
+            CodigoProductoTxt.Text = "";
+            DescripcionTxt.Text = "";
+            ExisteciasProdTxt.Text = "";
+            ValorUnitarioTxt.Text = "";
+            IvaProductoText.Text = "";
+            cantidadTxt.Text = "";
+            
+            
+            
+        }
+        private void LimpiarCamposFactura()
+        {
+            NumeroFactureTxt.Text = "";
+            IdentificacionTxt.Text = "";
+            TipoBusquedaTxt.Text = "";
+            ClienteTxt.Text = "";
+        }
 
         private void DetalleDtG_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -197,6 +238,64 @@ namespace SigmaStockUI
             RespuestaTransaccion respuestaTransaccion = new RespuestaTransaccion();
             respuestaTransaccion = facturaService.GuardarFactura(factura);
             MessageBox.Show(respuestaTransaccion.Mensaje, "Busqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LimpiarCamposDetalle();
+            LimpiarCamposFactura();
+            DetalleDtG.Rows.Clear();
+        }
+
+        private void EliminarBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(CodigoProductoTxt.Text) == false)
+            {
+                factura.Detalles = facturaService.ListaSinUnProducto(factura.Detalles, int.Parse(CodigoProductoTxt.Text));
+                PintarTablaDetalles(factura.Detalles);
+                rellenarTxtTotales();
+            }
+            else
+            {
+                MessageBox.Show("Porfavor verifique si existe el producto primero");
+            }
+        }
+
+
+        private void ModificarBtn_Click(object sender, EventArgs e)
+        {
+            DetalleDtG.Rows.Clear();
+            if (string.IsNullOrEmpty(IdentificacionTxt.Text) == false && IdentificacionTxt.Text != "CC/NIT")
+            {
+                if (string.IsNullOrEmpty(CodigoProductoTxt.Text) == false)
+                {
+                    RespuestaBusquedaProducto respuestaBusqueda = new RespuestaBusquedaProducto();
+                    respuestaBusqueda = productoService.ObtenerProductosCodigo(int.Parse(TipoBusquedaTxt.Text));
+                    producto = new Producto
+                    {
+                        IdProducto = respuestaBusqueda.Producto.IdProducto,
+                        NombreProducto = respuestaBusqueda.Producto.NombreProducto,
+                        Existencias = respuestaBusqueda.Producto.Existencias,
+                        IVA = respuestaBusqueda.Producto.IVA,
+                        PrecioUnitarioProducto = respuestaBusqueda.Producto.PrecioUnitarioProducto
+                    };
+                    if (string.IsNullOrEmpty(cantidadTxt.Text) == false)
+                    {
+                        if (producto.Existencias >= int.Parse(cantidadTxt.Text))
+                        {
+                            factura.Detalles = facturaService.ModificarProductoDeLalista(factura.Detalles, producto, int.Parse(cantidadTxt.Text), factura.Id_Factura);
+                            PintarTablaDetalles(factura.Detalles);
+                            rellenarTxtTotales();
+                        }
+                        else
+                        {
+                            MessageBox.Show("La cantidad solicitada es mayor a la cantidad del producto", "Verificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Campo cantidad no puede estar vacio", "Verificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else MessageBox.Show("Porfavor verifique la existencia del producto");
+            }
+            else MessageBox.Show("Ingrese un cliente por favor");
         }
     }
 }

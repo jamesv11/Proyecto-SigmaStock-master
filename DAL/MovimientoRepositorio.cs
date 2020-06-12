@@ -25,7 +25,7 @@ namespace DAL
             OracleDataReader dataReader;
             using (var command = _connection._conexion.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM MOVIMIENTO";
+                command.CommandText = "SELECT * FROM MOVIMIENTO ORDER BY FECHA";
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -37,7 +37,7 @@ namespace DAL
                         movimiento.FechaMovimiento = (DateTime)dataReader["FECHA"];
                         movimiento.Cantidad = int.Parse(((object)dataReader["CANTIDAD"]).ToString());
                         movimiento.TipoMovimiento = (string)dataReader["TIPO_MOVIMIENTO"];
-                        movimiento.IdDetalle = int.Parse(((object)dataReader["DETALLE"]).ToString());
+                        movimiento.IdProducto = int.Parse(((object)dataReader["DETALLE"]).ToString());
                         movimiento.IdFactura = int.Parse(((object)dataReader["FACTURA"]).ToString());
                         Movimientos.Add(movimiento);
                     }

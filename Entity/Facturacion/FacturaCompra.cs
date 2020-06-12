@@ -10,9 +10,10 @@ namespace Entity
     {
            
         public FacturaCompra( Proveedor proveedor): base(proveedor)
-        {
+        {        
+           
+            NombreEmpresa = proveedor.NombreEmpresa;
             Detalles = new List<Detalle>();
-            NombreEmpresa = proveedor.NombreEmpresa;          
             NombrePersona = $"{proveedor.Persona.PrimerNombre} { proveedor.Persona.PrimerApellido} {proveedor.Persona.SegundoApellido}";
             
 

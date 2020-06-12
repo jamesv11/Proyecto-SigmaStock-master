@@ -20,9 +20,9 @@ namespace Entity
         public decimal ValorUnitario { get; set; }
         public decimal ValorNeto { get; set; }
         public decimal IVADetalle { get; set; }
-        
+        public decimal PrecioCompra { get; set; }
 
-        public abstract void CalcularValorNeto(decimal valor);
+        public abstract void CalcularValorNeto();
         
 
     }

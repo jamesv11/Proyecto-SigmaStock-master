@@ -17,6 +17,7 @@ namespace DAL
         private IList<FacturaCompra> facturaCompras;
         public FacturaCompraRepositorio(ConnectionManager connection)
         {
+            facturaCompras = new List<FacturaCompra>();
             _connection = connection;
             facturaCompras = new List<FacturaCompra>();
         }
@@ -38,6 +39,7 @@ namespace DAL
                     command.Parameters.Add("ID_PRODUC", OracleDbType.Int32).Value = item.Id_Producto;
                     command.Parameters.Add("NUM_FACTURA", OracleDbType.Int32).Value = item.Id_Factura;
                     command.Parameters.Add("PRECIOUNITARIO", OracleDbType.Decimal).Value = item.ValorUnitario;
+                    command.Parameters.Add("PRECIOCOMPRA", OracleDbType.Decimal).Value = item.PrecioCompra;
                     command.ExecuteNonQuery();
 
 
@@ -57,6 +59,7 @@ namespace DAL
 
                 command.Parameters.Add("XIDFACTURA", OracleDbType.Int32).Value = factura.Id_Factura;
                 command.Parameters.Add("XCEDULA_PROVE", OracleDbType.Varchar2).Value = factura.IdentificacionPersona;
+                command.Parameters.Add("XVALORTOTAL", OracleDbType.Decimal).Value = factura.ValorTotal;
                 command.ExecuteNonQuery();
 
             }
@@ -122,7 +125,12 @@ namespace DAL
             return facturaCompras.ToList();
         }
 
-
+        public FacturaCompra BuscarFactura(int id_factura)
+        {
+            facturaCompras.Clear();
+            facturaCompras = Consultar();
+            return facturaCompras.Where(p=>p.Id_Factura == id_factura).FirstOrDefault();
+        }
 
         public int NumeroFacturaSig()
         {
@@ -145,6 +153,7 @@ namespace DAL
             FacturaCompra facturaCompra = new FacturaCompra(proveedor);
             facturaCompra.Id_Factura = int.Parse(((object)dataReader["NUMEROFACTURA"]).ToString());
             facturaCompra.FechaExpedicion = DateTime.Parse(((object)dataReader["FECHAFACTURA"]).ToString());
+            facturaCompra.FechaExpedicion = DateTime.Parse(((object)dataReader["VALORTOTAL"]).ToString());
             facturaCompra.Detalles = ConsultarDetalle(facturaCompra.Id_Factura);
             return facturaCompra;
 
@@ -156,7 +165,8 @@ namespace DAL
             int cantidad = int.Parse(((object)dataReader["CANTIDADCOMPRA"]).ToString());
             decimal valorunitario = int.Parse(((object)dataReader["PRECIO_UNITARIO"]).ToString());
             int idFactura = int.Parse(((object)dataReader["NUMERO_FACTURA"]).ToString());
-            DetalleCompra detalle = new DetalleCompra(producto, cantidad,valorunitario,idFactura);
+            decimal precioCompra = int.Parse(((object)dataReader["PRECIOCOMPRA"]).ToString());
+            DetalleCompra detalle = new DetalleCompra(producto, cantidad,valorunitario,idFactura,precioCompra);
             return detalle;
         }
 

@@ -29,6 +29,7 @@ namespace DAL
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("XIDFACTURA", OracleDbType.Varchar2).Value = factura.Id_Factura;
                 command.Parameters.Add("XCEDULA_CLIENTE", OracleDbType.Int32).Value = factura.IdentificacionPersona;
+                command.Parameters.Add("XVALORTOTAL", OracleDbType.Decimal).Value = factura.ValorTotal;
                 command.ExecuteNonQuery();
 
 
@@ -129,6 +130,7 @@ namespace DAL
             FacturaVenta facturaVenta = new FacturaVenta (cliente);
             facturaVenta.Id_Factura = int.Parse(((object)dataReader["NUMEROFACTURA"]).ToString());
             facturaVenta.FechaExpedicion = DateTime.Parse(((object)dataReader["FECHAFACTURA"]).ToString());
+            facturaVenta.FechaExpedicion = DateTime.Parse(((object)dataReader["VALORTOTAL"]).ToString());
             facturaVenta.Detalles = ConsultarDetalle(facturaVenta.Id_Factura);
             return facturaVenta;
 
@@ -141,7 +143,8 @@ namespace DAL
             int cantidad = int.Parse(((object)dataReader["CANTIDADCOMPRA"]).ToString());
             decimal valorunitario = int.Parse(((object)dataReader["PRECIO_UNITARIO"]).ToString());
             int idFactura = int.Parse(((object)dataReader["NUMERO_FACTURA"]).ToString());
-            DetalleCompra detalle = new DetalleCompra(producto, cantidad, valorunitario, idFactura);
+            
+            DetalleVenta detalle = new DetalleVenta(producto, cantidad, idFactura);
             return detalle;
         }
 
